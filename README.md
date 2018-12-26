@@ -26,7 +26,8 @@
   - [Subscriptions](./graphql_example/subscriptions.graphql)
 
 #### API Usage
-> If you want to really test that node API, you have to set the default datamodel in basic prisma tutorial [here](https://www.prisma.io/docs/prisma-graphql-api/reference/concepts-vw4d/)
+> If you want to really test that node API, you have to set the default datamodel in basic prisma tutorial [here](https://www.prisma.io/docs/prisma-graphql-api/reference/concepts-vw4d/).
+> 
 > You can get prisma token $ prisma token
 - **fetch**
   ```
