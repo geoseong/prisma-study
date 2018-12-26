@@ -1,0 +1,22 @@
+type Post {
+  id: ID! @unique
+  title: String!
+  published: Boolean!
+  author: User
+}
+
+type User {
+  id: ID! @unique
+  age: Int
+  email: String! @unique
+  name: String!
+  accessRole: AccessRole
+  scores: [Int!]!
+  posts: [Post!]!
+  # likedPosts: [Post!]! @relation(name: "LikedPosts")
+}
+
+enum AccessRole {
+  USER
+  ADMIN
+}

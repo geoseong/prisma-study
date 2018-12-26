@@ -1,0 +1,120 @@
+# Write your query or mutation here
+query ObjectQueries {
+  user(
+    where: {
+      id: "cjq283jcs000e0871lv8ti472"
+    }
+  ) {
+    id
+    name
+    accessRole
+    posts(where: {id: "cjq283jew000f0871k2tale5o"}) {
+      id
+      title
+      published
+    }
+	}
+}
+
+query Connection1 {
+  postsConnection {
+    edges {
+      cursor
+      node {
+        id
+        published
+        title
+        author {
+          id
+          age
+          email
+        }
+      }
+    }
+    aggregate {
+      count
+    }
+  }
+}
+
+query Connection2 {
+  postsConnection(where: {
+    title_contains: "Prisma"
+  }) {
+    aggregate {
+      count
+    }
+    edges {
+      node {
+        id
+        title
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}
+
+query Argument_Single_Filters {
+  posts(
+    orderBy: title_DESC,
+    where : {
+      published: true
+    }
+  ) {
+    id
+    title
+    published
+  }
+}
+
+query Argument_Relation_Filters {
+  users(where: {
+    posts_none: {
+      author: {
+        accessRole: USER
+      }
+    }
+  }) {
+    name
+  }
+}
+
+query Argument_Multiple_Filters {
+  posts(where: {
+    AND: [{
+      title_in: ["About prisma queries", "Prisma API-Query"]
+    }, {
+      published: false
+    }]
+  }) {
+    id
+    title
+    published
+  }
+}
+
+query Pagination1 {
+  posts(
+    last: 3
+    skip: 2
+  ) {
+    id
+    title
+  }
+}
+
+query Pagination2 {
+  posts(
+    first: 1
+    after: "cjq283jfg000h0871adnveabh"
+  ) {
+    id
+    title
+  }
+}

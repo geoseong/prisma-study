@@ -1,0 +1,54 @@
+subscription Subscription_Understanding{
+  post {
+    node {
+      id
+      title
+    }
+  }
+}
+
+subscription Subscription_Understanding2 {
+  post {
+    updatedFields
+  }
+}
+
+subscription Subscription_deleted{
+  post(where: {
+    mutation_in: [DELETED]
+  }) {
+    node {
+      id
+      title
+      published
+    }
+    previousValues {
+      id
+      title
+      published
+    }
+    updatedFields
+  }
+}
+
+subscription Subscription_created{
+  post(where: {
+    mutation_in: [CREATED]
+    node: {
+      title_contains: "GraphQL"
+    }
+  }) {
+    mutation
+    node {
+      id
+      title
+      published
+    }
+    previousValues {
+      id
+      title
+      published
+    }
+    updatedFields
+  }
+}

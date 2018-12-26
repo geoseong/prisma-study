@@ -1,0 +1,248 @@
+mutation Mutations_Object_Create {
+  createUser(
+    data: {
+      age: 42
+      email: "alice@prisma.io"
+      name: "Alice"
+    }
+  ) {
+    id
+    name
+  }
+}
+mutation Mutations_Object_Update {
+  updateUser(
+    data: {
+      name: "Ailey"
+      age: 30
+    }
+    where: {
+      id: "cjq3kh7mk002e0871gl8o30vz"
+    }
+  ) {
+    id
+    name
+  }
+}
+mutation Mutations_Object_Upsert{
+  upsertUser(
+    where: {
+      email: "alice@prisma.io"
+    }
+    create: {
+      email: "alice@prisma.io"
+      age: 42
+      name: "Alice"
+    }
+    update: {
+      age: 42
+    }
+  ) {
+    name
+  }
+}
+mutation Mutations_Object_Delete{
+  deleteUser(where: {
+    email: "bob@prisma.io"
+  }) {
+    id
+    name
+    email
+  }
+}
+mutation Mutations_Nested_connect {
+  createPost(data: {
+    title: "This is a draft"
+    published: true
+    author: {
+      connect: {
+        email: "alice@prisma.io"
+      }
+    }
+  }) {
+    id
+    author {
+      name
+    }
+  }
+}
+mutation Mutations_Nested_create {
+  createPost(data: {
+    title: "This is a draft"
+    published: true
+    author: {
+      create: {
+        name: "Bob"
+        email: "bob@prisma.io"
+        age: 30
+      }
+    }
+  }) {
+    id
+    author {
+      name
+    }
+  }
+}
+mutation Mutations_Nested_create_connect{
+  createUser(
+    data: {
+      name: "taeseong"
+      email: "taeseong@email.com"
+      age: 31
+      posts: {
+        create: [
+          {
+            published: true
+            title: "Query: How to"
+          },
+          {
+            published: true
+            title: "Mutations: How to"
+          }
+        ]
+        connect: [
+          {
+            id: "manual1"
+          }, {
+            id: "manual2"
+          }
+        ]
+      }
+    }
+  ) {
+    id
+    posts {
+      id
+    }
+  }
+}
+
+mutation Mutations_Nested_update{
+  updateUser(
+    data: {
+      posts: {
+        update: [
+          {
+            where: {
+              id: "manual1"
+            }
+            data: {
+              title: "Hello World"
+            }
+          }
+        ]
+      }
+    }
+    where: {
+      id: "cjq3ldtgv00430871i6ocwyo0"
+    }
+  ) {
+    id
+    name
+    email
+    posts {
+      id
+      title
+    }
+  }
+}
+mutation Mutations_Nested_upsert{
+  updatePost(
+    where: {
+      id: "manual1"
+    },
+    data: {
+      title: "Now Published"
+      published: true
+      author: {
+        upsert: {
+          update: {
+            name: "Alice"
+          }
+          create: {
+            email: "aliceAgain@prisma.io"
+            name: "AliceAgain"
+            age: 42
+          }
+        }
+      }
+    }
+  ) {
+    id
+    author {
+      id
+    }
+  }
+}
+mutation Mutations_Nested_disconnect{
+  updateUser(
+    where: {
+      id: "cjq3ldtgv00430871i6ocwyo0"
+    }
+    data: {
+      posts: {
+        disconnect: [
+          { id: "cjq3kzgra003m0871udk91jux" }
+        ]
+      }
+    }
+  ) {
+    id
+    posts {
+      id
+    }
+  }
+}
+mutation Mutations_Nested_delete{
+  updateUser(
+    data: {
+      posts: {
+        delete: [
+          {
+            id: "manual1"
+          },
+        ]
+      }
+    }
+    where: {
+      id: "cjq3ldtgv00430871i6ocwyo0"
+    }
+  ) {
+    id
+  }
+}
+mutation Mutations_Scalar_create {
+  createUser(data: {
+    email: "scalar@example.io"
+    name: "scalar_example"
+    scores: { set: [1, 2, 3] }
+  }) {
+    id
+  }
+}
+mutation Mutations_Scalar_pop {
+  updateUser(
+    where: {
+      id: "cjq3ns52q000b087133l73s6n"
+    }
+    data: {
+      scores: { set: [10] }
+    }
+  ) {
+    id
+  }
+}
+
+mutation Mutations_Batch{
+  updateManyPosts(
+    where: {
+      published: true
+    }
+    data: {
+      published: false
+    }
+  ) {
+    count
+  }
+}

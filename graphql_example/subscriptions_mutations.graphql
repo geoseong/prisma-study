@@ -1,0 +1,39 @@
+mutation Subscription_updatePost {
+  updatePost(
+    where: {
+      id: "manual2"
+    }
+    data: {
+    	title: "post2 - subscribed"
+    }
+  ) {
+    id
+    title
+    published
+  }
+}
+
+mutation Subscription_createPost {
+  createPost(
+    data: {
+      title: "GraphQL hiroo"
+      published: false
+    }
+  ) {
+    id
+    title
+    published
+  }
+}
+
+mutation Subscription_deletePost {
+  deletePost(
+    where: {
+      id: "cjq3pq1fv002f0871361snwvw"
+    }
+  ) {
+    id
+    title
+    published
+  }
+}

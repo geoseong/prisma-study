@@ -1,0 +1,25 @@
+mutation Queries_datainput {
+  createUser(
+    data: {
+      age: 30,
+      email: "geoseong@github.io",
+      name: "geoseong",
+      accessRole: ADMIN
+      posts: {
+        create: [{
+          title: "Prisma API-Query",
+          published: true,
+        }, {
+          title: "Prisma API-Mutation",
+          published: false,
+        }]
+      }
+    }
+  ) {
+    id,
+    age,
+    email,
+    name,
+    accessRole
+  }
+}
