@@ -1,0 +1,8 @@
+projects:
+  prisma-study:
+    schemaPath: generated/prisma-study.graphql
+    extensions:
+      endpoints:
+        dev:
+          url: 'http://localhost:4466'
+          subscription: subscription

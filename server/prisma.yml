@@ -1,6 +1,6 @@
 endpoint: http://localhost:4466
 datamodel: datamodel.prisma
-secret: geoseong
+# secret: geoseong
 
 generate:
   - generator: flow-client
@@ -8,5 +8,6 @@ generate:
 
 hooks:
   post-deploy:
-    - prisma generate
-    - prisma playground
+    - graphql get-schema -p prisma-study
+    # - prisma generate
+    # - prisma playground

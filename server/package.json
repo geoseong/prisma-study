@@ -4,6 +4,8 @@
   "description": "",
   "main": "api_apollo.js",
   "scripts": {
+    "prisma:server": "babel-node api/prisma_subscription.js",
+    "flow": "flow",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,6 +19,15 @@
     "graphql-tag": "^2.10.0",
     "graphql-yoga": "^1.16.9",
     "node-fetch": "^2.3.0",
-    "prisma-client-lib": "^1.22.2"
+    "prisma-client-lib": "^1.22.2",
+    "subscriptions-transport-ws": "^0.9.15"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-flow": "^7.0.0",
+    "flow-bin": "^0.89.0",
+    "graphql-cli": "^3.0.3"
   }
 }
